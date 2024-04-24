@@ -1,5 +1,5 @@
 // eslint-disable-next-line import/no-unresolved
-import { uploadPhoto, createUser } from './utils.js';
+import { uploadPhoto, createUser } from './utils';
 
 export default function handleProfileSignup() {
   return Promise
