@@ -32,3 +32,34 @@ const printTeacher: printTeacherFunction = (firstName, lastName) => {
   // Return the formatted string
   return `${firstLetter}. ${lastName}`;
 };
+
+// Define the interface for the constructor of StudentClass
+interface StudentConstructor {
+  firstName: string;
+  lastName: string;
+}
+
+// Define the interface for the StudentClass
+interface StudentClass {
+  workOnHomework(): string;
+  displayName(): string;
+}
+
+// Define the StudentClass
+class StudentClass implements StudentClass {
+  private firstName: string;
+  private lastName: string;
+
+constructor({ firstName, lastName }: StudentConstructor) {
+  this.firstName = firstName
+  this.lastName = lastName;
+}
+
+workOnHomework(): string {
+  return "Currently working";
+}
+
+displayName(): string {
+  return this.firstName;
+}
+}
