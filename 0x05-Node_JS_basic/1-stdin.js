@@ -1,17 +1,33 @@
+#!/usr/bin/env node
+
 const readline = require('readline');
 
-const r1 = readline.createInterface({
-  input: process.stdin,
-  output: process.stdout,
-});
+if (process.stdin.isTTY) {
+  // Interactive mode
+  const rl = readline.createInterface({
+    input: process.stdin,
+    output: process.stdout,
+  });
 
-console.log('Welcome to Holberton School, what is your name?');
+  console.log('Welcome to Holberton School, what is your name?');
 
-r1.on('line', (input) => {
-  console.log(`Your name is: ${input}`);
-  r1.close();
-});
+  rl.question('', (name) => {
+    console.log(`Your name is: ${name}`);
+    rl.close();
+  });
 
-r1.on('close', () => {
-  console.log('This important software is now closing');
-});
+  // rl.on('close', () => {
+  // console.log('This important software is now closing');
+  // });
+} else {
+  // Non-interactive mode
+  console.log('Welcome to Holberton School, what is your name?');
+  process.stdin.on('data', (data) => {
+    const name = data.toString().trim();
+    process.stdout.write(`Your name is: ${name}\n`);
+  });
+
+  process.stdin.on('end', () => {
+    process.stdout.write('This important software is now closing\n');
+  });
+}
