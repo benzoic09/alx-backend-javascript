@@ -1,5 +1,4 @@
-
-module.exports = {
+odule.exports = {
   presets: [
     [
       '@babel/preset-env',
