@@ -1,5 +1,3 @@
-#!/usr/bin/env node
-
 const readline = require('readline');
 
 if (process.stdin.isTTY) {
@@ -10,15 +8,10 @@ if (process.stdin.isTTY) {
   });
 
   console.log('Welcome to Holberton School, what is your name?');
-
   rl.question('', (name) => {
     console.log(`Your name is: ${name}`);
     rl.close();
   });
-
-  // rl.on('close', () => {
-  // console.log('This important software is now closing');
-  // });
 } else {
   // Non-interactive mode
   console.log('Welcome to Holberton School, what is your name?');
