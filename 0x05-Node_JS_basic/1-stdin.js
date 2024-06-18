@@ -1,5 +1,7 @@
 const readline = require('readline');
 
+process.stdout.write('Welcome to Holberton School, what is your name?\n');
+
 if (process.stdin.isTTY) {
   // Interactive mode
   const rl = readline.createInterface({
@@ -7,14 +9,12 @@ if (process.stdin.isTTY) {
     output: process.stdout,
   });
 
-  console.log('Welcome to Holberton School, what is your name?');
   rl.question('', (name) => {
-    console.log(`Your name is: ${name}`);
+    process.stdout.write(`Your name is: ${name}\n`);
     rl.close();
   });
 } else {
   // Non-interactive mode
-  console.log('Welcome to Holberton School, what is your name?');
   process.stdin.on('data', (data) => {
     const name = data.toString().trim();
     process.stdout.write(`Your name is: ${name}\n`);
