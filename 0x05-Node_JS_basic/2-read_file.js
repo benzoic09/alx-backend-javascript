@@ -1,13 +1,13 @@
 const fs = require('fs');
-const path = require('path')
+const path = require('path');
 
 function countStudents(filePath) {
-    try {
-        const data = fs.readFileSync(filePath, 'utf-8');
-        const lines = data.trim().split('\n').filter(line => line);
+  try {
+    const data = fs.readFileSync(filePath, 'utf-8');
+    const lines = data.trim().split('\n').filter(line => line);
 
-        if (lines.length < 2) {
-            throw new Error('Cannot load the database');
+    if (lines.length < 2) {
+      throw new Error('Cannot load the database');
     }
 
     const headers = lines[0].split(',');
@@ -28,11 +28,13 @@ function countStudents(filePath) {
       fields[field].push(studentData[0]);
     });
 
-     // Log the number of students in each field and their names
-     for (const [field, names] of Object.entries(fields)) {
-        console.log(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
-      }
-    } catch (error) {
-      console.error('Cannot load the database');
+    // Log the number of students in each field and their names
+    for (const [field, names] of Object.entries(fields)) {
+      console.log(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
     }
+  } catch (error) {
+    console.error('Cannot load the database');
   }
+}
+
+module.exports = countStudents;
