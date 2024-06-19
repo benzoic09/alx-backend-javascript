@@ -1,39 +1,43 @@
 const fs = require('fs');
-const path = require('path');
+// const path = require('path');
 
 function countStudents(filePath) {
   try {
     const data = fs.readFileSync(filePath, 'utf-8');
-    const lines = data.trim().split('\n').filter(line => line);
+    const lines = data.split('\n');
 
-    if (lines.length < 2) {
+    const students = lines
+      .filter((line) => line.trim().length > 0)
+      .slice(1);
+
+    if (students.length === 0) {
       throw new Error('Cannot load the database');
     }
 
-    const headers = lines[0].split(',');
-    const students = lines.slice(1);
+    console.log(`Number of students: ${students.length}`);
 
-    // Total number of students
-    const numberOfStudents = students.length;
-    console.log(`Number of students: ${numberOfStudents}`);
+    const fieldCounts = {};
+    const fieldNames = {};
 
-    // Group students by field
-    const fields = {};
-    students.forEach((line) => {
-      const studentData = line.split(',');
-      const field = studentData[3];
-      if (!fields[field]) {
-        fields[field] = [];
+    students.forEach((student) => {
+      const [firstname, , , field] = student.split(',');
+      if (field) {
+        if (!fieldCounts[field]) {
+          fieldCounts[field] = 0;
+          fieldNames[field] = [];
+        }
+        fieldCounts[field] += 1;
+        fieldNames[field].push(firstname);
       }
-      fields[field].push(studentData[0]);
     });
 
-    // Log the number of students in each field and their names
-    for (const [field, names] of Object.entries(fields)) {
-      console.log(`Number of students in ${field}: ${names.length}. List: ${names.join(', ')}`);
+    for (const field in fieldCounts) {
+      if (Object.prototype.hasOwnProperty.call(fieldCounts, field)) {
+        console.log(`Number of students in ${field}: ${fieldCounts[field]}. List: ${fieldNames[field].join(', ')}`);
+      }
     }
   } catch (error) {
-    console.error('Cannot load the database');
+    throw new Error('Cannot load the database');
   }
 }
 
