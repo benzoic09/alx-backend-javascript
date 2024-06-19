@@ -6,7 +6,7 @@ if (process.stdin.isTTY) {
   // Interactive mode
   process.stdin.on('data', (name) => {
     process.stdout.write(`Your name is: ${name.toString().trim()}\n`);
-    //process.stdout.write('This important software is now closing\n');
+    // process.stdout.write('This important software is now closing\n');
     process.exit();
   });
 } else {
