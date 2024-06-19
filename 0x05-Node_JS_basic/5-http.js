@@ -12,7 +12,8 @@ const app = http.createServer((req, res) => {
     const url = req.url;
 
     // Set the response HTTP header with HTTP status and Content-Type
-    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.statusCode = 200;
+    res.setHeader('Content-Type', 'text/plain');
 
     // Handling different URL paths
     if (url === '/') {
@@ -37,7 +38,7 @@ const app = http.createServer((req, res) => {
 // Start the HTTP server and listen on port 1245
 const PORT = 1245;
 app.listen(PORT, () => {
-    console.log(`Server is running and listening on port ${PORT}`);
+    //console.log(`Server is running and listening on port ${PORT}`);
 });
 
 // Export the app variable for external use
