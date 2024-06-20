@@ -1,7 +1,7 @@
 {
   "name": "node_js_basics",
   "version": "1.0.0",
-  "description": "",
+  "description": "project for learning the basics of unittests in Node.js",
   "main": "index.js",
   "scripts": {
     "lint": "./node_modules/.bin/eslint",
@@ -9,7 +9,7 @@
     "test": "mocha",
     "dev": "nodemon --exec babel-node --presets babel-preset-env ./server.js ./database.csv"
   },
-  "author": "",
+  "author": "Ben Kimani <benzoic09@gmail.com>",
   "license": "ISC",
   "dependencies": {
     "chai-http": "^4.3.0",
