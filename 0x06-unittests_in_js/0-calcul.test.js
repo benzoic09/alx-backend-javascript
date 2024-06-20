@@ -10,8 +10,8 @@ describe('calculateNumber', () => {
     assert.strictEqual(calculateNumber(1.4, 3.6), 5);
   });
 
-  it('should return 6 when inputs are 1.5 and 4.5', () => {
-    assert.strictEqual(calculateNumber(1.5, 4.5), 7);
+  it('should return 0 when inputs are 0 and 0', function() {
+    assert.strictEqual(calculateNumber(0, 0), 0);
   });
 
   it('should return 6 when inputs are 1.4 and 4.6', () => {
